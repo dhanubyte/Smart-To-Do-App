@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Profile Page</title>
+        </head>
+        <body>
+            <h1>Golla Dhanunjaya</h1>
+            <h2>About Me</h2>
+            <p>Hello! World!!!..I am Golla Dhanunjaya.I am currently pursuing my bachelor of technology at LPU Punjab.<br>I have a passion to become a frontend developer in MNC's with a high package ....</p>
+            <img src="Linkedin-Profile.jpg" alt="Image is not provided">
+            <h2>Skills</h2>
+            <ul>
+                
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JS</li>
+                <li>Python</li>
+                <li>C</li>
+                <li>SQL</li>
+
+            </ul>
+            <h2>Education</h2>
+            <ol>
+                <li>10th Grade - MJP School(Gorantla)</li>
+                <li>12th Grade - Narayana Junior College(Kurnool)</li>
+                <li>Bachelor of Technologgy - Lovely Professional University(Punjab)</li>
+
+            </ol>
+                <table border="1">
+                    <tr>
+                        <th>Certificate Name</th>
+                        <th>Issued By</th>
+                        <th>Date</th>
+
+                    </tr>
+                    <tr>
+                        <td>HTML Essentials</td>
+                        <td>Cisco Network Academy</td>
+                        <td>2026-02-28</td>
+                    </tr>
+                    <tr>
+                        <td>Python Essentials</td>
+                        <td>Cisco Network Academy</td>
+                        <td>2026-04-26</td>
+                    </tr>
+                    <tr>
+                        <td>Building Positive Attitude</td>
+                        <td>Tech Veda</td>
+                        <td>2025-10-28</td>
+                    </tr>
+                </table>
+            <h3>Contact Me</h3>
+            <a href="https://github.com/dhanubyte" target="_blank">GitHub</a>
+            <form>
+                <input type="text" name="Username" placeholder="Enter Your name here....">
+                <input type="email" name="email" placeholder="Enter Your email here......">
+                <textarea name="message" placeholder="Enter Your message here...."></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+             <footer>
+            <p>&copy; 2026 Golla Dhanunjaya.All rights reserved</p>
+        </footer>
+        </body>
+</html>

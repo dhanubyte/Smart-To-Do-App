@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Smart To-Do App</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!--Main Appliaction-->
+        <main class="app">
+            <!--Header-->
+        <header class="app-header">
+            <div>
+                <h1>Smart To-Do App</h1>
+                <p>Stay organized. Stay productive.</p>
+            </div>
+            <button id="themeToggle">🌙</button>
+        </header>
+        <!--Statistics-->
+        <section class="stats">
+            <div class="stat-card">
+                <h3>Total Tasks</h3>
+                <p id="totalTasks">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Pending</h3>
+                <p id="pendingTasks">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Completed</h3>
+                <p id="completedTasks">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>High Priority </h3>
+                <p id="highPriorityTasks">0</p>
+            </div>
+            </section>
+            <!--Add Task Form-->
+            <section class="task-form-section">
+                <h2>Add New Task</h2>
+                <form id="taskForm">
+                    <input type="text" id="taskTitle" placeholder="Enter task title here..." required >
+                    <select id="taskPriority">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                    <input type="date" id="taskDueDate" required>
+                    <button type="submit">Add Task</button>
+                </form>
+            </section>
+            <!--Search and Filter-->
+            <section class="controls">
+                <input type="text" id="searchInput" placeholder="🔍 Search tasks here...">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                    <button class="filter-btn" data-filter="high">High Priority</button>
+                </div>
+            </section>
+            <!--Task List-->
+            <section class="tasks-section">
+                <h2>My Tasks</h2>
+                <div id="taskList">
+                    <!--Tasks will be appear here -->
+                </div>
+            </section>
+        </main>
+        <script src="script.js"></script>
+        
+    </body>
+</html>
