@@ -11,6 +11,7 @@ function clearMessage() {
     message.textContent = "";
 }
 
+
 /* HANDLE LOGIN FORM SUBMISSION */
 loginForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -21,18 +22,22 @@ loginForm.addEventListener("submit", function (event) {
 
     if (email === "" || password === "") {
         message.textContent = "Please enter your email and password.";
-        message.style.color = "red";
+        message.style.color = "#ff6b6b";
+
     } else if (!emailPattern.test(email)) {
         message.textContent = "Please enter a valid email address.";
-        message.style.color = "red";
+        message.style.color = "#ff6b6b";
+
     } else if (password.length < 6) {
         message.textContent = "Password must contain at least 6 characters.";
-        message.style.color = "red";
+        message.style.color = "#ff6b6b";
+
     } else {
-        message.textContent = "Demo only: authentication is not connected yet.";
-        message.style.color = "green";
+        message.textContent = "Input validation successful!";
+        message.style.color = "#4ade80";
     }
 });
+
 
 /* SHOW / HIDE PASSWORD */
 togglePassword.addEventListener("click", function () {
