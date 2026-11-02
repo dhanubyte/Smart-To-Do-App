@@ -224,3 +224,39 @@ body {
         font-size: 22px;
     }
 }
+
+/* FORM LABELS */
+.input-group label {
+    display: block;
+    color: #F5F5F5;
+    font-size: 14px;
+    margin-bottom: 9px;
+    font-weight: 600;
+}
+
+/* SIGNUP SPACING */
+.signup-text {
+    margin-top: 25px;
+    text-align: center;
+}
+
+/* LOGIN MESSAGE */
+#message {
+    min-height: 20px;
+}
+
+/* BETTER INPUT ALIGNMENT */
+.input-box input {
+    min-width: 0;
+}
+
+/* RESPONSIVE BUTTON */
+.login-btn {
+    cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid #ED7A5A;
+    outline-offset: 3px;
+}
