@@ -87,3 +87,58 @@ body {
     font-size: 30px;
     font-weight: 700;
 }
+.task-form-section {
+    background: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+.task-form-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+/* FORM LAYOUT */
+#taskForm {
+    display: flex;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 12px;
+    align-items: center;
+}
+/* INPUTS AND DROPDOWN */
+#taskForm input,
+#taskForm select {
+    width: 100%;
+    padding: 13px;
+    background: var(--input-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    transition: 0.3s;
+
+}
+/* INPUT FOCUS */
+#taskForm input:focus,
+#taskForm select:focus {
+    border-color: var(--acent-color);
+    box-shadow: 0 0 0 3px rgba(237, 122, 90, 0.12);
+
+}
+/* ADD  TASK BUTTON */
+#taskForm button {
+    padding: 13px 22px;
+    background: var(--acent-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#taskForm button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
