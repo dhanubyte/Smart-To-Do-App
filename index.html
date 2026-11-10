@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Smart To-Do</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <main class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <!--Login Heading-->
+                <h1>Welcome Back!</h1>
+                <p>Sign in to continue to your tasks</p> 
+            </div>
+            <!--App Name-->
+            <h2>Smart To-Do</h2>
+            <p>Stay organized. Stay productive.</p>
+            
+            
+            <!--Login Form-->
+            <form id="loginForm">
+                <!--Email-->
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-box">
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                </div>
+                <!--Password-->
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-box">
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                        <button type="button" id="togglePassword">show</button>
+                    </div>
+                    
+                </div>
+                <!--Forgot Password-->
+                <div class="forgot-password">
+                    <a href="#" id="forgotPassword">Forgot Password?</a>
+                </div>
+                <!--Login Button-->
+                <button type="submit" class="login-btn" id="loginButton">
+                    Sign In
+                    <span>→</span>
+                </button>
+                <p id="message" aria-live="polite"></p>
+            </form>
+            <!--Sign Up -->
+            <div class="signup-text">
+                <p>Don't have an account?
+                     <a href="signup.html">Sign Up</a>
+                </p>
+            </div>
+
+        </div>
+    </main>
+    <script src="login.js"></script>
+</body>
+</html>
