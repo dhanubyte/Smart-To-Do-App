@@ -41,7 +41,7 @@ loginForm.addEventListener("submit", function (event) {
 
     // Connect to Dashboard
     setTimeout(function () {
-        window.location.href = "index.html";
+        window.location.href = "dashboard.html";
     }, 800);
 });
 
