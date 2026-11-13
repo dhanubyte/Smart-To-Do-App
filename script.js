@@ -1,10 +1,30 @@
 /* SELECT HTML ELEMENTS */
 //TASK FORM
 console.log("Smart To-Do Javascript connected!");
+/* DARK MODE / LIGHT MODE */
+const themeToggle=document.getElementById("themeToggle");
+//Apply selected theme
+function setTheme(theme) {
+    document.documentElement.dataset.theme=theme;
+    themeToggle.textContent=theme==="dark" ? "☀️" : "🌙";
+    //Save selected theme
+    localStorage.setItem("smartTodoTheme", theme);
+}
+//Get previously saved theme
+const savedTheme=localStorage.getItem("smartTodoTheme") || "dark";
+//Apply saved theme when dashboard opens
+setTheme(savedTheme);
+//Toggle between themes
+themeToggle.addEventListener("click", function() {
+    const currentTheme=document.documentElement.dataset.theme;
+    const newTheme=currentTheme==="dark" ? "light" : "dark";
+    setTheme(newTheme);
+});
 const taskForm=document.getElementById("taskForm");
 const taskTitle=document.getElementById("taskTitle");
 const taskPriority=document.getElementById("taskPriority");
 const taskDueDate=document.getElementById("taskDueDate");
+const taskDescription = document.getElementById("taskDescription");
 //TASK LIST
 const taskList=document.getElementById("taskList");
 const searchInput=document.getElementById("searchInput");
@@ -17,7 +37,11 @@ const completedTasks=document.getElementById("completedTasks");
 const highPriorityTasks=document.getElementById("highPriorityTasks");
 /* TASK ARRAY */
 //store all tasks
-let tasks=[];
+let tasks=JSON.parse(localStorage.getItem("smartTodoTasks")) || [];
+/* SAVE TASKS TO LOCAL STORAGE */
+function saveTasks() {
+    localStorage.setItem("smartTodoTasks",JSON.stringify(tasks));
+}
 /* ADD TASK FUNCTIONALITY */
 taskForm.addEventListener("submit", function(event){
     //prevents page refresh
@@ -26,10 +50,12 @@ taskForm.addEventListener("submit", function(event){
     const title=taskTitle.value.trim();
     const priority=taskPriority.value;
     const dueDate=taskDueDate.value;
+    const description = taskDescription.value.trim();
     //Create new task object
     const newTask= {
         id: Date.now(),
         title: title,
+        description: description,
         priority: priority,
         dueDate: dueDate,
         completed: false
@@ -37,6 +63,7 @@ taskForm.addEventListener("submit", function(event){
     };
     //add task to array
     tasks.push(newTask);
+    saveTasks();
     //Display task on dashboard
     renderTasks();
     //Display tasks in console
@@ -104,6 +131,23 @@ function renderTasks() {
 
         const taskCard = document.createElement("div");
         taskCard.classList.add("task-card");
+        // Check whether the task is overdue
+        // Check whether the task is overdue
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+const taskDueDateValue = task.dueDate
+    ? new Date(task.dueDate + "T00:00:00")
+    : null;
+
+const isOverdue = taskDueDateValue !== null &&
+                  taskDueDateValue < today &&
+                  !task.completed;
+
+// Apply overdue styling
+if (isOverdue) {
+    taskCard.classList.add("overdue-task");
+}
 
         if (task.completed) {
             taskCard.classList.add("completed");
@@ -133,7 +177,26 @@ function renderTasks() {
         details.appendChild(dueDate);
 
         taskInfo.appendChild(title);
+        // Display task description
+if (task.description) {
+    const descriptionElement = document.createElement("p");
+
+    descriptionElement.textContent = task.description;
+    descriptionElement.classList.add("task-description");
+
+    taskInfo.appendChild(descriptionElement);
+}
         taskInfo.appendChild(details);
+        // Display overdue label
+if (isOverdue) {
+    const overdueLabel = document.createElement("p");
+
+    overdueLabel.textContent = "⚠️ OVERDUE";
+
+    overdueLabel.classList.add("overdue-label");
+
+    taskInfo.appendChild(overdueLabel);
+}
 
         const actions = document.createElement("div");
         actions.classList.add("task-actions");
@@ -145,6 +208,7 @@ function renderTasks() {
 
         completeBtn.addEventListener("click", function() {
             task.completed = !task.completed;
+            saveTasks();
             renderTasks();
         });
 
@@ -153,14 +217,58 @@ function renderTasks() {
         editBtn.classList.add("task-action-btn", "edit-btn");
         editBtn.textContent = "Edit";
 
-        editBtn.addEventListener("click", function() {
-            const updatedTitle = prompt("Enter updated task title:", task.title);
+       editBtn.addEventListener("click", function() {
 
-            if (updatedTitle !== null && updatedTitle.trim() !== "") {
-                task.title = updatedTitle.trim();
-                renderTasks();
-            }
-        });
+    // Update task title
+    const updatedTitle = prompt(
+        "Enter updated task title:",
+        task.title
+    );
+
+    if (updatedTitle === null || updatedTitle.trim() === "") {
+        return;
+    }
+
+    // Update task priority
+    const updatedPriority = prompt(
+        "Enter priority (Low, Medium, High):",
+        task.priority
+    );
+
+    if (updatedPriority === null) {
+        return;
+    }
+
+    // Validate priority
+    const validPriorities = ["Low", "Medium", "High"];
+
+    if (!validPriorities.includes(updatedPriority.trim().toLowerCase().replace(/^./, char => char.toUpperCase()))) {
+        alert("Please enter Low, Medium, or High.");
+        return;
+    }
+
+    // Update due date
+    const updatedDueDate = prompt(
+        "Enter due date (YYYY-MM-DD):",
+        task.dueDate
+    );
+
+    if (updatedDueDate === null) {
+        return;
+    }
+
+    // Update task details
+    task.title = updatedTitle.trim();
+    task.priority = updatedPriority.trim().toLowerCase().replace(/^./, char => char.toUpperCase());
+    task.dueDate = updatedDueDate.trim();
+
+    // Save updated task
+    saveTasks();
+
+    // Refresh dashboard
+    renderTasks();
+
+});
 
         // Delete button
         const deleteBtn = document.createElement("button");
@@ -168,12 +276,21 @@ function renderTasks() {
         deleteBtn.textContent = "Delete";
 
         deleteBtn.addEventListener("click", function() {
-            tasks = tasks.filter(function(item) {
-                return item.id !== task.id;
-            });
 
-            renderTasks();
+    const confirmDelete = confirm(
+        "Are you sure you want to delete this task?"
+    );
+
+    if (confirmDelete) {
+        tasks = tasks.filter(function(item) {
+            return item.id !== task.id;
         });
+
+        saveTasks();
+        renderTasks();
+    }
+
+});
 
         actions.appendChild(completeBtn);
         actions.appendChild(editBtn);
@@ -209,3 +326,5 @@ function updateStatistics() {
     highPriorityTasks.textContent=highPriorityCount;
 
 }
+//Load saved tasks when dashboard opens
+renderTasks();

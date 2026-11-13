@@ -14,6 +14,18 @@
     --success-color: #4ADE80;
 
 }
+/* LIGHT THEME */
+
+:root[data-theme="light"] {
+    --bg-color: #F4F6FB;
+    --card-color: #FFFFFF;
+    --input-color: #F8FAFC;
+    --text-color: #20212B;
+    --muted-color: #626B7A;
+    --acent-color: #E66B4E;
+    --border-color: #D8DEEA;
+    --success-color: #15803D;
+}
 body {
     font-family: Arial, sans-serif;
     background: var(--bg-color);
@@ -120,6 +132,33 @@ body {
     transition: 0.3s;
 
 }
+/* TASK DESCRIPTION */
+#taskForm textarea {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-height: 85px;
+    padding: 14px;
+    background: var(--input-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    outline: none;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    resize: vertical;
+    transition: 0.3s;
+}
+
+/* DESCRIPTION PLACEHOLDER */
+#taskForm textarea::placeholder {
+    color: var(--muted-color);
+}
+
+/* DESCRIPTION FOCUS */
+#taskForm textarea:focus {
+    border-color: var(--acent-color);
+    box-shadow: 0 0 0 3px rgba(237, 122, 90, 0.12);
+}
 /* INPUT FOCUS */
 #taskForm input:focus,
 #taskForm select:focus {
@@ -171,6 +210,7 @@ body {
     }
     #taskForm input,
     #taskForm select,
+    #taskForm textarea,
     #taskForm button {
         width: 100%;
     }
@@ -381,4 +421,23 @@ body {
     .task-action-btn {
         width: 100%;
     }
+}
+/* OVERDUE TASKS */
+.overdue-task {
+    border: 1px solid #EF4444;
+    background-color: rgba(239, 68, 68, 0.08);
+}
+.overdue-label {
+    color: #EF4444;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 6px;
+}
+/* TASK DESCRIPTION */
+.task-description {
+    color: var(--muted-color);
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 6px;
+    overflow-wrap: break-word;
 }
