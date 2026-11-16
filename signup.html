@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Smart To-Do </title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <main class="signup-container">
+        <div class="signup-card">
+            <!--Signup Heading-->
+            <div class="signup-header">
+                <h1>Create Account</h1>
+                <p>Join us and organize your day!</p>
+            </div>
+            <!--App Name-->
+            <h2>Smart To-Do</h2>
+            <p>Stay organized. Stay productive.</p>
+            <!--Signup Form-->
+            <form id="signupForm">
+                <!--Full Name-->
+                <div class="input-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name" required>
+                </div>
+                <!--Email-->
+                <div class="input-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                </div>
+                <!--Password-->
+                <div class="input-group">
+                    <label for="signupPassword">Password</label>
+                    <div class="input-box">
+                        <input type="password" id="signupPassword" placeholder="Create a password" required>
+                        <button type="button" id="toggleSignupPassword">Show</button></div>
+                </div>
+                <!--Confirm Password-->
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <!--Signup Button-->
+                <button type="submit" class="Signup-btn">
+                    Create Account →
+                </button>
+                <!--Message-->
+                <p id="signupMessage" aria-live="polite"></p>
+            </form>
+                    <!--Login Link-->
+                    <div class="login-text">
+                        <p>
+                            Already have an account? <a href="index.html">Sign In</a></p>
+                    </div>
+        </div>
+    </main>
+    <script src="signup.js"></script>
+</body>
+</html>
