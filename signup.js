@@ -10,19 +10,31 @@ const confirmPassword = document.getElementById("confirmPassword");
 const signupMessage = document.getElementById("signupMessage");
 const toggleSignupPassword = document.getElementById("toggleSignupPassword");
 
+// Show or hide password
+toggleSignupPassword.addEventListener("click", function () {
+    if (signupPassword.type === "password") {
+        signupPassword.type = "text";
+        toggleSignupPassword.textContent = "Hide";
+    } else {
+        signupPassword.type = "password";
+        toggleSignupPassword.textContent = "Show";
+    }
+});
 
+// Handle signup form submission
 signupForm.addEventListener("submit", function(event) {
     event.preventDefault();
 
     // Get input values
     const name = fullName.value.trim();
-    const email = signupEmail.value.trim();
+    const email = signupEmail.value.trim().toLowerCase();
     const password = signupPassword.value;
     const confirm = confirmPassword.value;
 
     // Check password length
     if (password.length < 6) {
-        signupMessage.textContent = "Password must contain at least 6 characters.";
+        signupMessage.textContent =
+            "Password must contain at least 6 characters.";
         signupMessage.style.color = "#ED7A5A";
         return;
     }
@@ -34,7 +46,22 @@ signupForm.addEventListener("submit", function(event) {
         return;
     }
 
+    // Create user object
+    const user = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    // Save user details in localStorage
+    localStorage.setItem("smartTodoUser", JSON.stringify(user));
+
     // Display success message
-    signupMessage.textContent = "Registration details validated successfully!";
+    signupMessage.textContent =
+        "Registration successful! You can now sign in.";
     signupMessage.style.color = "#6FCF97";
+
+    // Clear signup form
+    signupForm.reset();
+    toggleSignupPassword.textContent = "Show";
 });

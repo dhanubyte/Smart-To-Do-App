@@ -17,7 +17,7 @@ function showMessage(text, color) {
 loginForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const email = emailInput.value.trim();
+    const email = emailInput.value.trim().toLowerCase();
     const password = passwordInput.value;
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -33,13 +33,43 @@ loginForm.addEventListener("submit", function (event) {
     }
 
     if (password.length < 6) {
-        showMessage("Password must contain at least 6 characters.", "#ff6b6b");
+        showMessage(
+            "Password must contain at least 6 characters.",
+            "#ff6b6b"
+        );
         return;
     }
 
+    // Get registered user details
+    const savedUser = localStorage.getItem("smartTodoUser");
+
+    if (!savedUser) {
+        showMessage(
+            "No account found. Please sign up first!",
+            "#ff6b6b"
+        );
+        return;
+    }
+
+    // Convert stored data into JavaScript object
+    const user = JSON.parse(savedUser);
+
+    // Check email
+    if (email !== user.email) {
+        showMessage("Email address not registered!", "#ff6b6b");
+        return;
+    }
+
+    // Check password
+    if (password !== user.password) {
+        showMessage("Incorrect password!", "#ff6b6b");
+        return;
+    }
+
+    // Login successful
     showMessage("Login successful! Redirecting...", "#4ade80");
 
-    // Connect to Dashboard
+    // Redirect to Dashboard
     setTimeout(function () {
         window.location.href = "dashboard.html";
     }, 800);

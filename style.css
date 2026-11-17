@@ -55,6 +55,13 @@ body {
     color: var(--muted-color);
     font-size: 14px;
 }
+/* WELCOME USER */
+#welcomeUser {
+    color: var(--acent-color);
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 8px;
+}
 #themeToggle {
     width: 45px;
     height: 45px;
