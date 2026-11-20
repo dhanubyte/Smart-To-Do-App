@@ -63,8 +63,8 @@ body {
 }
 .input-group input {
     width: 100%;
-    paddingz: 13px;
-    border: 1p1x solid #484A5A;
+    padding: 13px;
+    border: 1px solid #484A5A;
     border-radius: 8px;
     outline: none;
     background: #20212B;
@@ -123,10 +123,6 @@ body {
     transform: translateY(-2px);
 }
 
-.Signup-btn:hover {
-    background: #587A71;
-    transform: translateY(-2px);
-}
 
 #signupMessage {
     text-align: center;
