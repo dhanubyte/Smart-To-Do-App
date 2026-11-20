@@ -328,3 +328,196 @@ function updateStatistics() {
 }
 //Load saved tasks when dashboard opens
 renderTasks();
+
+/* SIDEBAR FUNCTIONALITY */
+
+const menuToggle = document.getElementById("menuToggle");
+const sidebar = document.getElementById("sidebar");
+const closeSidebar = document.getElementById("closeSidebar");
+const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+// Open sidebar
+menuToggle.addEventListener("click", function() {
+    sidebar.classList.add("open");
+    sidebarOverlay.classList.add("show");
+    document.body.classList.add("sidebar-open");
+});
+
+// Close sidebar function
+function hideSidebar() {
+    sidebar.classList.remove("open");
+    sidebarOverlay.classList.remove("show");
+    document.body.classList.remove("sidebar-open");
+}
+
+// Close using X button
+closeSidebar.addEventListener("click", hideSidebar);
+
+// Close by clicking outside sidebar
+sidebarOverlay.addEventListener("click", hideSidebar);
+
+// Close after selecting a navigation item
+document.querySelectorAll(".nav-item").forEach(function(item) {
+    item.addEventListener("click", function() {
+        hideSidebar();
+    });
+});
+
+/* PROFILE DROPDOWN */
+
+// Select profile elements
+const profileToggle = document.getElementById("profileToggle");
+const profileDropdown = document.getElementById("profileDropdown");
+
+const profileName = document.getElementById("profileName");
+const profileEmail = document.getElementById("profileEmail");
+
+const profileImage = document.getElementById("profileImage");
+const defaultProfileAvatar = document.getElementById("defaultProfileAvatar");
+
+const changePhotoBtn = document.getElementById("changePhotoBtn");
+const removePhotoBtn = document.getElementById("removePhotoBtn");
+const profileImageInput = document.getElementById("profileImageInput");
+const profileButtonImage = document.getElementById("profileButtonImage");
+
+// Open and close profile dropdown
+profileToggle.addEventListener("click", function (event) {
+    event.stopPropagation();
+    profileDropdown.classList.toggle("show");
+});
+
+// Close dropdown when clicking outside
+document.addEventListener("click", function (event) {
+    if (
+        !profileDropdown.contains(event.target) &&
+        !profileToggle.contains(event.target)
+    ) {
+        profileDropdown.classList.remove("show");
+    }
+});
+
+// Display logged-in user's information
+const savedUser = JSON.parse(
+    localStorage.getItem("smartTodoUser")
+);
+
+if (savedUser) {
+    profileName.textContent = savedUser.name || "Your Name";
+    profileEmail.textContent = savedUser.email || "your@email.com";
+}
+
+// Open device gallery
+changePhotoBtn.addEventListener("click", function () {
+    profileImageInput.click();
+});
+
+// Upload and save profile picture
+profileImageInput.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (!file) return;
+
+    // Allow images up to 1 MB
+    if (file.size > 1024 * 1024) {
+        alert("Please select an image smaller than 1 MB.");
+        this.value = "";
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+        const imageData = event.target.result;
+
+        localStorage.setItem("smartTodoProfileImage", imageData);
+
+        showProfileImage(imageData);
+    };
+
+    reader.readAsDataURL(file);
+});
+
+// Display profile picture
+function showProfileImage(imageData) {
+    // Show the same image in the header and dropdown
+    profileImage.src = imageData;
+    profileButtonImage.src = imageData;
+
+    profileImage.hidden = false;
+    profileButtonImage.hidden = false;
+
+    // Hide both default avatars
+    defaultProfileAvatar.hidden = true;
+    document.getElementById("profileAvatar").hidden = true;
+}
+
+// Load previously saved profile picture
+const savedProfileImage = localStorage.getItem("smartTodoProfileImage");
+
+if (savedProfileImage) {
+    showProfileImage(savedProfileImage);
+}
+
+// Remove profile picture
+removePhotoBtn.addEventListener("click", function () {
+    localStorage.removeItem("smartTodoProfileImage");
+
+    // Clear uploaded images
+    profileImage.src = "";
+    profileButtonImage.src = "";
+
+    profileImage.hidden = true;
+    profileButtonImage.hidden = true;
+
+    // Show default avatars again
+    defaultProfileAvatar.hidden = false;
+    document.getElementById("profileAvatar").hidden = false;
+
+    profileImageInput.value = "";
+});
+
+/* PROFILE IMAGE VIEW MODE */
+
+const imageViewModal = document.getElementById("imageViewModal");
+const expandedProfileImage = document.getElementById("expandedProfileImage");
+const closeImageView = document.getElementById("closeImageView");
+
+// Open full image only when clicking the dropdown picture
+profileImage.addEventListener("click", function (event) {
+    event.stopPropagation();
+
+    if (profileImage.hidden || !profileImage.src) return;
+
+    expandedProfileImage.src = profileImage.src;
+    imageViewModal.classList.add("show");
+});
+
+// Close using X
+closeImageView.addEventListener("click", function () {
+    imageViewModal.classList.remove("show");
+});
+
+// Close by clicking outside the image
+imageViewModal.addEventListener("click", function (event) {
+    if (event.target === imageViewModal) {
+        imageViewModal.classList.remove("show");
+    }
+});
+
+// Close using Escape key
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        imageViewModal.classList.remove("show");
+    }
+});
+
+
+
+
+// Close with Escape
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        imageViewModal.classList.remove("show");
+    }
+});
+

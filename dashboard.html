@@ -9,14 +9,150 @@
     <body>
         <!--Main Appliaction-->
         <main class="app">
-            <!--Header-->
-        <header class="app-header">
-            <div>
-                <h1>Smart To-Do App</h1>
-                <p>Stay organized. Stay productive.</p>
-            </div>
-            <button id="themeToggle">🌙</button>
-        </header>
+
+<!-- DASHBOARD HEADER -->
+<header class="app-header">
+
+    <!-- LEFT SIDE -->
+    <div class="header-left">
+        <button id="menuToggle" class="header-icon-btn">
+            ☰
+        </button>
+
+        <div class="app-title">
+            <h1>Smart To-Do</h1>
+            <p>Stay organized. Stay productive.</p>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="header-right">
+
+        <!-- THEME BUTTON -->
+        <button id="themeToggle" class="header-icon-btn">
+            🌙
+        </button>
+
+        <!-- PROFILE BUTTON -->
+       <button id="profileToggle" class="profile-btn">
+    <img id="profileButtonImage" src="" alt="Profile" hidden>
+    <span id="profileAvatar">👤</span>
+</button>
+<!-- PROFILE DROPDOWN -->
+<div class="profile-dropdown" id="profileDropdown">
+
+    <!-- PROFILE INFORMATION -->
+    <div class="profile-info">
+
+        <img
+            src=""
+            alt="Profile Picture"
+            id="profileImage"
+            class="profile-image"
+            hidden
+        >
+
+        <div id="defaultProfileAvatar" class="default-profile-avatar">
+            👤
+        </div>
+
+        <h3 id="profileName">Your Name</h3>
+        <p id="profileEmail">your@email.com</p>
+
+    </div>
+
+    <!-- PROFILE PICTURE OPTIONS -->
+    <div class="profile-actions">
+
+        <button type="button" id="changePhotoBtn">
+            📷 Change Profile Picture
+        </button>
+
+        <button type="button" id="removePhotoBtn">
+            🗑️ Remove Picture
+        </button>
+
+        <input
+            type="file"
+            id="profileImageInput"
+            accept="image/*"
+            hidden
+        >
+
+    </div>
+
+    <!-- PROFILE MENU OPTIONS -->
+    <div class="profile-menu">
+
+        <button type="button" id="settingsBtn">
+            ⚙️ Settings
+        </button>
+
+        <button type="button" id="logoutBtn" class="logout-btn">
+            ↪ Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+    </div>
+
+</header>
+
+<!-- SIDEBAR NAVIGATION -->
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-header">
+        <h2>Menu</h2>
+        <button id="closeSidebar" class="close-sidebar">✕</button>
+    </div>
+
+    <nav class="sidebar-nav">
+
+        <a href="dashboard.html" class="nav-item active">
+            <span>🏠</span>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="#tasksSection" class="nav-item">
+            <span>📝</span>
+            <span>My Tasks</span>
+        </a>
+
+        <a href="#" class="nav-item">
+            <span>📅</span>
+            <span>Calendar</span>
+        </a>
+
+        <a href="#" class="nav-item">
+            <span>📈</span>
+            <span>Activity</span>
+        </a>
+
+        <a href="#" class="nav-item">
+            <span>📊</span>
+            <span>Analytics</span>
+        </a>
+
+        <a href="#" class="nav-item">
+            <span>🎮</span>
+            <span>Relax Zone</span>
+        </a>
+
+        <a href="#" class="nav-item">
+            <span>⚙️</span>
+            <span>Settings</span>
+        </a>
+
+    </nav>
+
+</aside>
+
+<!-- SIDEBAR BACKGROUND OVERLAY -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
         <!--Statistics-->
         <section class="stats">
             <div class="stat-card">
@@ -65,14 +201,74 @@
                 </div>
             </section>
             <!--Task List-->
-            <section class="tasks-section">
+            
+<!-- SIDEBAR NAVIGATION -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="sidebar-header">
+        <h2>Menu</h2>
+        <button id="closeSidebar" class="close-sidebar">✕</button>
+    </div>
+
+    <nav class="sidebar-nav">
+
+        <a href="dashboard.html" class="nav-item active">
+            <span>🏠</span>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="#tasksSection" class="nav-item">
+            <span>📝</span>
+            <span>My Tasks</span>
+        </a>
+
+        <a href="#" class="nav-item">
+            <span>📅</span>
+            <span>Calendar</span>
+        </a>
+
+        <a href="#" class="nav-item">
+            <span>📈</span>
+            <span>Activity</span>
+        </a>
+
+        <a href="#" class="nav-item">
+            <span>📊</span>
+            <span>Analytics</span>
+        </a>
+
+        <a href="#" class="nav-item">
+            <span>🎮</span>
+            <span>Relax Zone</span>
+        </a>
+
+        <a href="#" class="nav-item">
+            <span>⚙️</span>
+            <span>Settings</span>
+        </a>
+
+    </nav>
+
+</aside>
+
+<!-- SIDEBAR BACKGROUND OVERLAY -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
                 <h2>My Tasks</h2>
                 <div id="taskList">
                     <!--Tasks will be appear here -->
                 </div>
             </section>
         </main>
+        <!-- PROFILE IMAGE VIEW MODAL -->
+<div class="image-view-modal" id="imageViewModal">
+    <button type="button" id="closeImageView" class="close-image-view">
+        ✕
+    </button>
+
+    <img id="expandedProfileImage" src="" alt="Full Profile Picture">
+</div>
         <script src="script.js"></script>
         
+     
     </body>
 </html>

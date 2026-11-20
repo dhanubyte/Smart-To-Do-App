@@ -39,30 +39,43 @@ body {
     max-width: 1100px;
     margin: 0 auto;
 }
+
+/* DASHBOARD HEADER */
 .app-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 15px;
     margin-bottom: 35px;
 }
-.app-header h1 {
-    font-size: 30px;
+
+/* LEFT SIDE */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.app-title h1 {
+    font-size: 28px;
     font-weight: 700;
     margin-bottom: 8px;
-
 }
-.app-header p {
+
+.app-title p {
     color: var(--muted-color);
     font-size: 14px;
 }
-/* WELCOME USER */
-#welcomeUser {
-    color: var(--acent-color);
-    font-size: 15px;
-    font-weight: 600;
-    margin-top: 8px;
+
+/* RIGHT SIDE */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
-#themeToggle {
+
+/* HEADER ICON BUTTONS */
+.header-icon-btn {
     width: 45px;
     height: 45px;
     border: 1px solid var(--border-color);
@@ -72,12 +85,72 @@ body {
     font-size: 20px;
     cursor: pointer;
     transition: 0.3s;
-
 }
-#themeToggle:hover {
+
+.header-icon-btn:hover {
     background: var(--acent-color);
+    color: white;
     transform: translateY(-2px);
 }
+
+/* THEME BUTTON */
+#themeToggle.header-icon-btn {
+    font-size: 19px;
+}
+
+/* PROFILE BUTTON */
+.profile-btn {
+    width: 45px;
+    height: 45px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: var(--card-color);
+    color: var(--text-color);
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.profile-btn:hover {
+    border-color: var(--acent-color);
+    transform: translateY(-2px);
+}
+
+/* PROFILE AVATAR */
+#profileAvatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 22px;
+}
+
+/* MOBILE HEADER */
+@media (max-width: 480px) {
+    .app-title h1 {
+        font-size: 21px;
+    }
+
+    .app-title p {
+        font-size: 12px;
+    }
+
+    .header-left {
+        gap: 9px;
+    }
+
+    .header-right {
+        gap: 7px;
+    }
+
+    .header-icon-btn,
+    .profile-btn {
+        width: 40px;
+        height: 40px;
+    }
+}
+
 .stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -447,4 +520,247 @@ body {
     line-height: 1.5;
     margin-top: 6px;
     overflow-wrap: break-word;
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 270px;
+    height: 100vh;
+    padding: 25px 18px;
+    background: var(--card-color);
+    border-right: 1px solid var(--border-color);
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+/* SIDEBAR OPEN */
+.sidebar.open {
+    transform: translateX(0);
+}
+
+/* SIDEBAR HEADER */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.sidebar-header h2 {
+    font-size: 21px;
+}
+
+/* CLOSE BUTTON */
+.close-sidebar {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--input-color);
+    color: var(--text-color);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* NAVIGATION */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px 14px;
+    color: var(--muted-color);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: var(--input-color);
+    color: var(--acent-color);
+}
+
+/* SIDEBAR OVERLAY */
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+.sidebar-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* PREVENT BACKGROUND SCROLL */
+body.sidebar-open {
+    overflow: hidden;
+}
+
+/* PROFILE DROPDOWN */
+.header-right {
+    position: relative;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 270px;
+    padding: 20px;
+    background: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    z-index: 1100;
+
+    display: none;
+}
+
+.profile-dropdown.show {
+    display: block;
+}
+
+/* PROFILE INFORMATION */
+.profile-info {
+    text-align: center;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.profile-image,
+.default-profile-avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+}
+
+.profile-image {
+    object-fit: cover;
+}
+
+.default-profile-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--input-color);
+    font-size: 30px;
+}
+
+.profile-info h3 {
+    color: var(--text-color);
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.profile-info p {
+    color: var(--muted-color);
+    font-size: 13px;
+}
+
+/* PROFILE BUTTONS */
+.profile-actions,
+.profile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 14px;
+}
+
+.profile-actions button,
+.profile-menu button {
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 8px;
+    background: var(--input-color);
+    color: var(--text-color);
+    text-align: left;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.profile-actions button:hover,
+.profile-menu button:hover {
+    opacity: 0.8;
+    transform: translateX(3px);
+}
+
+.logout-btn {
+    color: #e05252 !important;
+}
+/* PROFILE BUTTON IMAGE */
+#profileButtonImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Hide fallback elements when a photo is available */
+#profileButtonImage[hidden],
+#profileAvatar[hidden],
+#profileImage[hidden],
+#defaultProfileAvatar[hidden] {
+    display: none !important;
+}
+
+/* PROFILE IMAGE VIEW MODE */
+.image-view-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.image-view-modal.show {
+    display: flex;
+    cursor: zoom-out;
+}
+
+#profileImage,
+#profileButtonImage {
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+#expandedProfileImage {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+.close-image-view {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
 }
